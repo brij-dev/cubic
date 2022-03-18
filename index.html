@@ -1,0 +1,38 @@
+<html>
+<head>
+	<script type="text/javascript" src='handler.js'></script>
+	<script type="text/javascript" src='utils.js'></script>
+</head>
+<body>
+<canvas id="canvas" ></canvas>
+<button id='solve-button'>Solve</button>
+<button id='scramble-button'>Scramble</button>
+<br/>
+<br/>
+<br/>
+<div> Scambled moved here: <div id='scrambled-text'></div><div>
+<div> Solution will be shown here: <div id='solution-text'></div><div>
+<script type="text/javascript">
+
+var cube;
+var run = function () {
+	cube.positionView();
+	cube.showCube();
+	requestAnimationFrame(run);
+}
+window.onload = function () {
+	cube = new RubiksCube();
+	const solveButton = document.getElementById('solve-button');
+	solveButton.addEventListener("click", function() {
+		cube.solve();
+	});
+	const scrambleButton = document.getElementById('scramble-button');
+	scrambleButton.addEventListener("click", function() {
+		cube.scramble(20);
+	});
+	run();
+}
+</script>
+
+
+</html>
